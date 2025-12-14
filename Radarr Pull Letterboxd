@@ -1,4 +1,5 @@
 #! /bin/bash
+#! /usr/bin/env bash
 
 radarr_key=$(cat $HOME/.shortcuts/secrets/radarr-api-key.txt)
 

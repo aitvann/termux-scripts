@@ -1,4 +1,5 @@
 #! /bin/bash
+#! /usr/bin/env bash
 
 git -C ~/.shortcuts fetch
 git -C ~/.shortcuts reset --hard origin/master
