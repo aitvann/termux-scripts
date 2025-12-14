@@ -1,0 +1,11 @@
+#! /bin/sh
+
+radarr_key=$(cat $HOME/.shortcuts/secrets/radarr-api-key.txt)
+
+curl \
+    --cacert <(echo quit | openssl s_client -showcerts -servername server -connect radarr.homelab.io:443) \
+    -i -H "Accept: application/json" \
+    -H "Content-Type: application/json" \
+    -H "X-Api-Key: ${radarr_key}" \
+    -X POST -d '{"name":"ImportListSync"}' \
+    https://radarr.homelab.io/api/v3/command/

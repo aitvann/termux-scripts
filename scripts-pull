@@ -1,0 +1,3 @@
+#! /bin/sh
+
+git -C ~/.shortcuts pull origin master -f --no-rebase
