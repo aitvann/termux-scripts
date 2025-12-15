@@ -4,7 +4,7 @@
 data_dir=$HOME/.shortcuts
 # data_dir=$HOME/code/termux-scripts/
 
-radarr_key=$(cat $data_dir/secrets/radarr-api-key.txt)
+radarr_key=$(cat $data_dir/secrets/radarr-key.txt)
 
 response=$(curl --cacert <(echo quit | openssl s_client -showcerts -servername server -connect radarr.homelab.io:443) \
     -H "Accept: application/json" \
