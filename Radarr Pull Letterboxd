@@ -1,8 +1,10 @@
 #! /bin/bash
 #! /usr/bin/env bash
 
-radarr_key=$(cat $HOME/.shortcuts/secrets/radarr-api-key.txt)
-# radarr_key=$(cat $HOME/code/termux-scripts/secrets/radarr-api-key.txt)
+data_dir=$HOME/.shortcuts
+# data_dir=$HOME/code/termux-scripts/
+
+radarr_key=$(cat $data_dir/secrets/radarr-api-key.txt)
 
 response=$(curl --cacert <(echo quit | openssl s_client -showcerts -servername server -connect radarr.homelab.io:443) \
     -H "Accept: application/json" \
@@ -43,7 +45,7 @@ response=$(curl --cacert <(echo quit | openssl s_client -showcerts -servername s
 
 echo "Create Import List Response: ${response}"
 
-id=$(echo ${response} | jq .id)
+id=$(echo $response | jq .id)
 
 echo "Import List Id: ${id}"
 
