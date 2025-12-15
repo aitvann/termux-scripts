@@ -4,7 +4,7 @@
 data_dir=$HOME/.shortcuts
 # data_dir=$HOME/code/termux-scripts/
 
-radarr_key=$(cat $data_dir/secrets/radarr-key.txt)
+radarr_key=$(cat $data_dir/.secrets/radarr-key.txt)
 
 response=$(curl --cacert <(echo quit | openssl s_client -showcerts -servername server -connect radarr.homelab.io:443) \
     -H "Accept: application/json" \
@@ -22,7 +22,7 @@ response=$(curl --cacert <(echo quit | openssl s_client -showcerts -servername s
       "listType": "advanced",
       "listOrder": 6,
       "minRefreshInterval": "12:00:00",
-      "name": "Letterboxd Radarr",
+      "name": "Letterboxd Radarr Oneshot",
       "fields": [
         {
           "order": 0,
@@ -49,9 +49,10 @@ id=$(echo $response | jq .id)
 
 echo "Import List Id: ${id}"
 
-echo "Sleeping For 10s Waiting For Download To Start..."
+wait_secs=30
+echo "Sleeping For ${wait_secs}s Waiting For Download To Start..."
 
-sleep 10
+sleep "${wait_secs}"
 
 curl --cacert <(echo quit | openssl s_client -showcerts -servername server -connect radarr.homelab.io:443) \
     -H "Accept: application/json" \
